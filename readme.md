@@ -1,4 +1,5 @@
 # Kosmo
 
-Sistema para desenvolvimento de serviços em lua, incluindo sites, apis
-e estruturas para bots.
+A Lua Framework
+
+See full documentation at [the project page](https://kxmn.github.io/kosmo)
