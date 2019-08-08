@@ -1,4 +1,4 @@
-local aurora = require 'aurora'
+aurora = require 'aurora'
 local lfs = require 'lfs'
 local fs = aurora.fs
 
@@ -23,34 +23,37 @@ local subdir = {
 }
 
 local files = {
-	"cfg/template.lua" = [[return {
-		conf = {
-			templatePath = 
-			compilePath =
-			cache = false
-
-		}, 
-		env = {
-			-- default functions and variables accessible
-			-- direct from template, creating a sandboxed environment
+	["cfg/kosmo.lua"] =
+	[[return {
+			templatePath        = kosmo.root()..'/tpl/',
+			templateCompilePath = kosmo.root()..'/var/tpl-cache/',
+			templateCache       = false,
+			templateEnv         = {}, -- default data accessible on template sandbox
+			databasePath				= kosmo.root()..'/dat/'
 		}
 	}]],
-	"cfg/webserver.lua" = [[return {
+
+	["cfg/webserver.lua"] =
+	[[return {
 		compress = true,
 		port = 8080,
-		location = "]]..cwd..[[web",
+		location = kosmo.root().."/web/",
 		rules = {
 			{ '/api/', 'kosmo.web.api', ''  },
 			{ '/test',             302, '/' }
 		},
 		error = { 404, '/404.html' },
 	}]],
-	"run" = [[
+
+	["run"] =
+	[[
 		require 'kosmo'
 		kosmo.configure() -- set paths
 		kosmo.run() -- run command
-	]]
-	"web/index.html" = [[<!DOCTYPE html><html><head><title>Kosmo</title><body><h1>Hello Kosmos</h1></body></html>]]
+	]],
+
+	["web/index.html"] =
+	[[<!DOCTYPE html><html><head><title>Kosmo</title><body><h1>Hello Kosmos</h1></body></html>]]
 
 }
 
@@ -59,11 +62,11 @@ local files = {
 
 -- Create directory structure
 for i,v in ipairs(subdir) do
-	fs.mkdir(cwd..subdir)
+	fs.mkdir(cwd..v)
 end
 
 -- Create default files
-for i,v in pairs(files) do 
+for i,v in pairs(files) do
 	if not fs.isFile(cwd..i) then fs.setFileContents(cwd..i,v) end
 end
 

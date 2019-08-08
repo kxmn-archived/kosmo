@@ -9,8 +9,8 @@ description = {
    detailed = [[
       Functions to fill the basic needs in filesystem handling, templating, string and math handling and much more.
    ]],
-   homepage = "http://github.com/kxmn/kosmo/wiki", -- We don't have one yet
-   license = "MIT" -- or whatever you like
+   homepage = "http://kxmn.github.io/kosmo",
+   license = "MIT"
 }
 dependencies = {
    "lua >= 5.3",
@@ -20,11 +20,4 @@ dependencies = {
 	 "lzlib >= 0.4.1.53-1",
 	 "mimetypes 1.0.0-2",
 	 "aurora >= 0.1"
-}
-build = {
-   -- We'll start here.
-	type = "builtin",
-	modules = {
-		kosmo = "init.lua",
-	}
 }
