@@ -1,0 +1,34 @@
+#!/usr/bin/lua
+_PROJECT = arg[1]
+_RUN = arg[2]
+
+_KOSMO = (function()
+	local p,v,path;
+	p = arg[0]:match("^(.+)/.+$")
+	v = _VERSION 
+	if not p:sub(1):match"[%./]" then p = './'..p end
+	path = {
+		root = p,
+		rock = p..'/rox/',
+		lib = p..'/lib/',
+		tpl = p..'/tpl/'.._PROJECT..'/',
+		var = p..'/var/'.._PROJECT..'/'
+	}
+
+	package.path =
+		path.lib..'?.lua;'..
+		path.lib..'?/init.lua;'..
+		path.rock..'share/lua/'..v..'/?.lua;'..
+		path.rock..'share/lua/'..v..'/?/init.lua;'..
+		package.path
+
+	package.cpath =
+		path.rock..'/lib/lua/'..v..'/?.so;'..
+		package.cpath
+
+	return path
+end)()
+
+aurora = require 'aurora'
+kosmo = require 'kosmo'
+dofile(_KOSMO.root..'/bin/'.._PROJECT..'/'.._RUN..'.lua');
