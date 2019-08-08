@@ -1,0 +1,89 @@
+---
+---
+
+@import "{{ site.theme }}";
+body {color:#eee}
+
+#title:before {
+	display:block;
+	width:100px;
+	height:100px;
+	background-image: url('/aurora/assets/logo-kxmn-dev.png?v2');
+	float:left;
+	content:"";
+}
+section #title h1 {
+	line-height:50px;
+	vertical-align:middle;
+	text-transform:capitalize;
+	font-size:5em;
+	font-weight:bold;
+	padding-left:30px;
+}
+section #title p {
+	padding-left:130px;
+	text-align:left;
+}
+
+#title h1:before {
+	display:none;
+}
+#title h1, a:link, a:visited, a:hover {
+	color:#f60;
+}
+
+h1 {font-size:3em;font-weight:bold;}
+h2 {font-size:2.5em;}
+h3 {font-size:2em;}
+hr {background:none;border:1px dashed #696969;height:1px}
+
+h1, h2, h3 {
+	display:inline-block;
+	margin-bottom:0.5em;
+	background:#252525;
+	padding-right:10px;
+}
+
+h1:before, h2:before, h3:before {
+	border-bottom:1px dashed #696969;
+	margin-top:0.5em;
+	display:block;
+	content:'';
+	width:calc(100% - 40px);
+	position:absolute;
+	z-index: -1;
+}
+
+
+blockquote {
+	border-left: 3px solid #ff6600;
+}
+
+pre, code, kbd {
+	background:#181818;
+	border:1px dashed #ff6600;
+	box-shadow:none;
+}
+pre code { border:none; }
+
+#header nav li a {
+	border:1px solid #742;
+	background:linear-gradient(#521, #742);
+	background-color:#521;
+	border-radius:20px;
+}
+
+@media screen and ( max-width:600px ) {
+	section #title h1 {
+		padding-left:0;
+		text-align:center;
+		display:block;
+		line-height:1em;
+		margin:0 0 0.2em 0;
+	}
+	section #title p {padding-left:0; text-align:center}
+	#title:before {
+		float:none;
+		margin:auto;
+	}
+}
