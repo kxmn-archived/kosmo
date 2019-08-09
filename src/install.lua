@@ -15,10 +15,10 @@ local subdir = {
 	"log", -- where the program writes some useful info
 	"tpl", -- templates not compiled
 	"web", -- webserver statically served
-		"assets/css", 
-		"assets/fonts", 
-		"assets/img", 
-		"assets/js",  
+		"web/assets/css", 
+		"web/assets/fonts", 
+		"web/assets/img", 
+		"web/assets/js",  
 	"dat", -- place for models
 }
 
@@ -52,7 +52,7 @@ local files = {
 	["run"] =
 	[[
 		require 'kosmo'
-		kosmo.configure() -- set paths
+		kosmo.config() -- set paths
 		kosmo.run() -- run command
 	]],
 

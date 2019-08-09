@@ -1,7 +1,9 @@
+local ctpl = kosmo.config('template')
 return require('aurora.template').new{
 	conf = {
-		templatePath = _KOSMO.tpl,
-		compilePath = _KOSMO.var..'compiledTemplate/',
-		cache = false
-	}
+		templatePath = ctpl.path,
+		compilePath = ctpl.compilePath,
+		cached = ctpl.cached
+	},
+	env=ctpl.env
 }
