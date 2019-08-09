@@ -1,4 +1,4 @@
-aurora = require 'aurora'
+require 'aurora'
 local lfs = require 'lfs'
 local fs = aurora.fs
 
@@ -23,17 +23,21 @@ local subdir = {
 }
 
 local files = {
-	["cfg/kosmo.lua"] =
+	["cfg/template.lua"] =
 	[[return {
-			templatePath        = kosmo.root()..'/tpl/',
-			templateCompilePath = kosmo.root()..'/var/tpl-cache/',
-			templateCache       = false,
-			templateEnv         = {}, -- default data accessible on template sandbox
-			databasePath				= kosmo.root()..'/dat/'
+			path        = kosmo.root()..'/tpl/',
+			compilePath = kosmo.root()..'/var/tpl-cache/',
+			cached      = false,
+			env         = {}, -- default data accessible on template sandbox
 		}
+	]],
+
+	["cfg/database.lua"] =
+	[[return {
+			path				= kosmo.root()..'/dat/'
 	}]],
 
-	["cfg/webserver.lua"] =
+	["cfg/ws.lua"] =
 	[[return {
 		compress = true,
 		port = 8080,
