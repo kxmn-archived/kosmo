@@ -1,7 +1,6 @@
 require 'aurora'
 kosmo = ondemand('kosmo')
 
-
 local kosmoConfig = {}
 local root = arg[0]:match"^(.+)/.+$"
 if not root:sub(1):match"[%./]" then root = './'..root end
@@ -15,9 +14,6 @@ kosmo.root() : path=string
 function kosmo.root() 
 	return root
 end
-
-
-
 
 --[[md
 kosmo.config(name) : conf=table
