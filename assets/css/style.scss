@@ -32,9 +32,13 @@ section #title p {
 	color:#f60;
 }
 
+#header {position:absolute}
+:target {color:#f80}
+:target:before {border-color:#f80}
+
 h1 {font-size:3em;font-weight:bold;}
 h2 {font-size:2.5em;}
-h3 {font-size:2em;}
+h3 {font-size:1.5em; color:#fa8;}
 hr {background:none;border:1px dashed #696969;height:1px}
 
 h1, h2, h3 {
@@ -59,12 +63,13 @@ blockquote {
 	border-left: 3px solid #ff6600;
 }
 
+pre { border:1px dashed #ff6600; }
 pre, code, kbd {
 	background:#181818;
-	border:1px dashed #ff6600;
 	box-shadow:none;
 }
-pre code { border:none; }
+
+code {border:none;padding:1px 2px}
 
 #header nav li a {
 	border:1px solid #742;
