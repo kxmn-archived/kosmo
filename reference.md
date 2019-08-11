@@ -1,6 +1,16 @@
 {:toc}
 
 
+# Kosmo
+
+Kosmo is a framework and, as the greek name says, will help you
+to develop in a MVC, minimum organized environment and provide
+some useful integrations.
+
+The main objective is not be exhaustively complete, but provide
+some easy to go patterns to start and handle projects with less
+efforts.
+
 ### kosmo.root() : pathString
 
 * pathString : root path for the project
@@ -97,4 +107,4 @@ end
 ```
 
 ----------
-Last update: 2019-08-11 05:24:52 -0300
+Last update: 2019-08-11 05:28:31 -0300
