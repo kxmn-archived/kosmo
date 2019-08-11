@@ -1,4 +1,4 @@
-[```Kosmo```](#reference_kosmo)
+* [```Kosmo```](#reference_kosmo)
     1. [```Kosmo configuration methods```](#reference_kosmo-configuration-methods)
         * [```kosmo.root() : pathString```](#reference_kosmo-root-pathstring)
         * [```kosmo.config(name) : confTable```](#reference_kosmo-config-name-conftable)
@@ -107,4 +107,4 @@ end
 ```
 
 ----------
-Last update: 2019-08-11 19:47:58 -0300
+Last update: 2019-08-11 19:52:52 -0300
