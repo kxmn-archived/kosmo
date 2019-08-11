@@ -1,11 +1,23 @@
-1. [```Kosmo```](#reference_kosmo)
-    1. [```Kosmo configuration methods```](#reference_kosmo-configuration-methods)
-        * [```kosmo.root() : pathString```](#reference_kosmo-root-pathstring)
-        * [```kosmo.config(name) : confTable```](#reference_kosmo-config-name-conftable)
+1. [```Introduction```](#reference_introduction)
+1. [```Kosmo configuration methods```](#reference_kosmo-configuration-methods)
+    1. [```kosmo.root() : pathString```](#reference_kosmo-root-pathstring)
+    1. [```kosmo.config(name) : confTable```](#reference_kosmo-config-name-conftable)
+    1. [```kosmo.run()```](#reference_kosmo-run)
+1. [```Database: kosmo.db```](#reference_database-kosmo-db)
+    1. [```kosmo.db.open(databaseName, extraConf) : Db```](#reference_kosmo-db-open-databasename-extraconf-db)
+    1. [```Db instance properties```](#reference_db-instance-properties)
+        * [```Db:close()```](#reference_db-close)
+        * [```Db:errorMessage() : sqliteCode, text```](#reference_db-errormessage-sqlitecode-text)
+        * [```Db:getRows(statementString [, namedValueTable]) : iteratorFn```](#reference_db-getrows-statementstring-namedvaluetable-iteratorfn)
+        * [```Db:prepare(statementString) : Stmt```](#reference_db-prepare-statementstring-stmt)
+    1. [```Stmt Instance```](#reference_stmt-instance)
+        * [```Stmt:run(namedValueTable) : Stmt```](#reference_stmt-run-namedvaluetable-stmt)
+        * [```Stmt:ends() : sqliteCode```](#reference_stmt-ends-sqlitecode)
+        * [```Stmt:getRows(namedValueTable) : iteratorFn```](#reference_stmt-getrows-namedvaluetable-iteratorfn)
 
 
 
-# ``Kosmo`` {#reference_kosmo}
+# ``Introduction`` {#reference_introduction}
 
 Kosmo is a framework and, as the greek name says, will help you
 to develop in a MVC, minimum organized environment and provide
@@ -15,22 +27,24 @@ The main objective is not be exhaustively complete, but provide
 some easy to go patterns to start and handle projects with less
 efforts.
 
-## ``Kosmo configuration methods`` {#reference_kosmo-configuration-methods}
+# ``Kosmo configuration methods`` {#reference_kosmo-configuration-methods}
 
 The following methods are used to configure path settings,
 command line execution control, etc
 
-### ``kosmo.root() : pathString`` {#reference_kosmo-root-pathstring}
+## ``kosmo.root() : pathString`` {#reference_kosmo-root-pathstring}
 
-* pathString : root path for the project
+Get the project pathstring to use building path for other resources
+: `pathString` root path for the project
 
-### ``kosmo.config(name) : confTable`` {#reference_kosmo-config-name-conftable}
+## ``kosmo.config(name) : confTable`` {#reference_kosmo-config-name-conftable}
 
 Get configuration from files stored in kosmo file hierarchy
 : `name` name of config scope, as found in kosmo cfg folder
 : `confTable` table returned with the properties set on file
 
-kosmo.run()
+## ``kosmo.run()`` {#reference_kosmo-run}
+
 Helper to load and run special lua files from the the lib project folder.
 
 The choosen file will be load calling from command line in the same notation
@@ -39,7 +53,8 @@ as modules, i.e. `./run a.b` will dofile the project `./lib/a/b.lua`.
 This lua file is not a module, so shouldn't return a object (table) or function,
 but autoexecute.
 
-kosmo.db module
+# ``Database: kosmo.db`` {#reference_database-kosmo-db}
+
 This module encapsulates lsqlite3 module <http://lua.sqlite.org>.
 The main benefits are:
 
@@ -47,7 +62,7 @@ The main benefits are:
 * Shortcuts to operations that otherwise would need tree or mor function calls
 * Error flags and handlings
 
-kosmo.db.open(databaseName, extraConf) : Db
+## ``kosmo.db.open(databaseName, extraConf) : Db`` {#reference_kosmo-db-open-databasename-extraconf-db}
 
 * `databaseName` : database name, to be found in database path config
 * `extraConf` : a table with extra paramenters to affect use of database
@@ -58,53 +73,72 @@ The `extraConf` table can have these optional keys:
 * `errorfn` : function to handle errors. Default is the global assert.
 * `flags` : as defined in <http://www.sqlite.org/c3ref/open.html> but prefixed with Lua object. Ex: `kosmo.db.sqlite3.OPEN_READWRITE + kosmo.db.sqlite3.OPEN_CREATE`
 
-Db instance properties
-* `Db.SQLite3Db` : Lsqlite3 instance
-* `Db.SQLite3Dbfile` = opened database filename with path
+## ``Db instance properties`` {#reference_db-instance-properties}
 
-Db:close()
+Properties on table returned by `kosmo.db.open()`
+: `Db.SQLite3Db` Lsqlite3 instance
+: `Db.SQLite3Dbfile` opened database filename with path
+
+### ``Db:close()`` {#reference_db-close}
+
 Database instance handler closer
 
-Db:errorMessage() : sqliteCode, text
-* `sqliteCode` : [Sqlite error code](https://www.sqlite.org/rescode.html#primary_result_code_list)
-* `text` : Text information about last error
+### ``Db:errorMessage() : sqliteCode, text`` {#reference_db-errormessage-sqlitecode-text}
 
-Db:getRows(statementString [, namedValueTable]) : iteratorFn
-* `statementString` : string with statement as if passed to kosmo.db.Database:prepare(statement)
-* `namedValueTable` : optional, a `{n1=v1, nN=vN}` table with values for the statememt
-* `iteratorFn` : iterator function, as used in `for` loops
+Get last database message and code error.
+: `sqliteCode` [Sqlite error code](https://www.sqlite.org/rescode.html#primary_result_code_list)
+: `text` Text information about last error
+
+### ``Db:getRows(statementString [, namedValueTable]) : iteratorFn`` {#reference_db-getrows-statementstring-namedvaluetable-iteratorfn}
+
+: `statementString` string with statement as if passed to kosmo.db.Database:prepare(statement)
+: `namedValueTable` optional, a `{n1=v1, nN=vN}` table with values for the statememt
+: `iteratorFn` iterator function, as used in `for` loops
 
 Example:
-
 ```
 for row in Db:nrows("SELECT * FROM test WHERE id=:id", {id=1}) do
     print(row.fieldName)
 end
 ```
 
-Db:prepare(statementString) : Stmt
-* `statement`: string
-* `Stmt`: returns a statement instance
+### ``Db:prepare(statementString) : Stmt`` {#reference_db-prepare-statementstring-stmt}
 
-Stmt:run(namedValueTable) : Stmt
-* `namedValueTable` : table dictionary or values for positional "?" in statements
-* `Stmt` : returned table with lsqlite3 kosmo extended methods
+Prepare statement to receive values before processing
+: `statement` string
+: `Stmt` returns a statement instance
 
-Stmt:ends() : sqliteCode
-* `sqliteCode` : [Sqlite error code](https://www.sqlite.org/rescode.html#primary_result_code_list)
+## ``Stmt Instance`` {#reference_stmt-instance}
 
-Stmt:getRows(namedValueTable) : iteratorFn
-* `namedValueTable` : a `{n1=v1, nN=vN}` values to be used with the statement
-* `iteratorFn` : returns a iterator function, as used in `for` loops
+Provides methods to run the statement with values and get results
+
+### ``Stmt:run(namedValueTable) : Stmt`` {#reference_stmt-run-namedvaluetable-stmt}
+
+Reset statement, bind named values and executes, checking if result
+is ok. Named values are passed with a dictionary table.
+: `namedValueTable` : dictionary table, where indexes are the variables of statement without the ":" or "$" prefixing it.
+: `Stmt` : Returns the self, so you can call run multiple times with different values.
+
+### ``Stmt:ends() : sqliteCode`` {#reference_stmt-ends-sqlitecode}
+
+Ends the execution for the statement. Internal call for sqlite3 `stmt:finalize()`
+: `sqliteCode` [Sqlite error code](https://www.sqlite.org/rescode.html#primary_result_code_list)
+
+### ``Stmt:getRows(namedValueTable) : iteratorFn`` {#reference_stmt-getrows-namedvaluetable-iteratorfn}
+
+Run statement with name values returning a iterator for successive calls on results
+: `namedValueTable` values to use with statement ex: `{n1=v1, nN=vN}`
+: `iteratorFn` : returns a iterator function, as used in `for` loops
 
 Example:
 
 ```
-local stmt = kosmo.db.open('somedb'):prepare('SELECT * FROM test WHERE id > :id1 AND id < :id2')
+local Stmt = kosmo.db.open('somedb')
+Stmt:prepare[[SELECT * FROM test WHERE id > :id1 AND id < :id2']]
 for row in Stmt:nrows{id1 = 10, id2 = 20} do
     print(row.fieldName)
 end
 ```
 
 ----------
-Last update: 2019-08-11 19:59:54 -0300
+Last update: 2019-08-11 20:41:50 -0300
