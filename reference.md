@@ -1,4 +1,5 @@
 1. [```Kosmo```](#reference_kosmo)
+		1. [```kosmo.root() : pathString```](#reference_kosmo-root-pathstring)
 		1. [```kosmo.config(name) : confTable```](#reference_kosmo-config-name-conftable)
 		1. [```kosmo.run()```](#reference_kosmo-run)
 1. [```kosmo.db module```](#reference_kosmo-db-module)
@@ -23,6 +24,10 @@ some useful integrations.
 The main objective is not be exhaustively complete, but provide
 some easy to go patterns to start and handle projects with less
 efforts.
+
+### ``kosmo.root() : pathString`` ### {#reference_kosmo-root-pathstring}
+
+* pathString : root path for the project
 
 ### ``kosmo.config(name) : confTable`` ### {#reference_kosmo-config-name-conftable}
 
@@ -116,4 +121,4 @@ end
 ```
 
 ----------
-Last update: 2019-08-11 17:58:19 -0300
+Last update: 2019-08-11 18:03:48 -0300
