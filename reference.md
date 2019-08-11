@@ -2,21 +2,10 @@
     1. [```Kosmo configuration methods```](#reference_kosmo-configuration-methods)
         * [```kosmo.root() : pathString```](#reference_kosmo-root-pathstring)
         * [```kosmo.config(name) : confTable```](#reference_kosmo-config-name-conftable)
-* [```kosmo.run()```](#reference_kosmo-run)
-* [```kosmo.db module```](#reference_kosmo-db-module)
-* [```kosmo.db.open(databaseName, extraConf) : Db```](#reference_kosmo-db-open-databasename-extraconf-db)
-* [```Db instance properties```](#reference_db-instance-properties)
-* [```Db:close()```](#reference_db-close)
-* [```Db:errorMessage() : sqliteCode, text```](#reference_db-errormessage-sqlitecode-text)
-* [```Db:getRows(statementString [, namedValueTable]) : iteratorFn```](#reference_db-getrows-statementstring-namedvaluetable-iteratorfn)
-* [```Db:prepare(statementString) : Stmt```](#reference_db-prepare-statementstring-stmt)
-* [```Stmt:run(namedValueTable) : Stmt```](#reference_stmt-run-namedvaluetable-stmt)
-* [```Stmt:ends() : sqliteCode```](#reference_stmt-ends-sqlitecode)
-* [```Stmt:getRows(namedValueTable) : iteratorFn```](#reference_stmt-getrows-namedvaluetable-iteratorfn)
 
 
 
-# ``Kosmo`` {#reference_kosmo}
+# ``Kosmo`:q` {#reference_kosmo}
 
 Kosmo is a framework and, as the greek name says, will help you
 to develop in a MVC, minimum organized environment and provide
@@ -26,22 +15,22 @@ The main objective is not be exhaustively complete, but provide
 some easy to go patterns to start and handle projects with less
 efforts.
 
-## ``Kosmo configuration methods`` {#reference_kosmo-configuration-methods}
+## ``Kosmo configuration methods`:q` {#reference_kosmo-configuration-methods}
 
 The following methods are used to configure path settings,
 command line execution control, etc
 
-### ``kosmo.root() : pathString`` {#reference_kosmo-root-pathstring}
+### ``kosmo.root() : pathString`:q` {#reference_kosmo-root-pathstring}
 
 * pathString : root path for the project
 
-### ``kosmo.config(name) : confTable`` {#reference_kosmo-config-name-conftable}
+### ``kosmo.config(name) : confTable`:q` {#reference_kosmo-config-name-conftable}
 
-* name : name of config scope, as found in kosmo cfg folder
-* confTable : table returned with the properties set on file
+Get configuration from files stored in kosmo file hierarchy
+: `name` name of config scope, as found in kosmo cfg folder
+: `confTable` table returned with the properties set on file
 
- ``kosmo.run()`` {#reference_kosmo-run}
-
+kosmo.run()
 Helper to load and run special lua files from the the lib project folder.
 
 The choosen file will be load calling from command line in the same notation
@@ -50,8 +39,7 @@ as modules, i.e. `./run a.b` will dofile the project `./lib/a/b.lua`.
 This lua file is not a module, so shouldn't return a object (table) or function,
 but autoexecute.
 
- ``kosmo.db module`` {#reference_kosmo-db-module}
-
+kosmo.db module
 This module encapsulates lsqlite3 module <http://lua.sqlite.org>.
 The main benefits are:
 
@@ -59,7 +47,7 @@ The main benefits are:
 * Shortcuts to operations that otherwise would need tree or mor function calls
 * Error flags and handlings
 
- ``kosmo.db.open(databaseName, extraConf) : Db`` {#reference_kosmo-db-open-databasename-extraconf-db}
+kosmo.db.open(databaseName, extraConf) : Db
 
 * `databaseName` : database name, to be found in database path config
 * `extraConf` : a table with extra paramenters to affect use of database
@@ -70,22 +58,18 @@ The `extraConf` table can have these optional keys:
 * `errorfn` : function to handle errors. Default is the global assert.
 * `flags` : as defined in <http://www.sqlite.org/c3ref/open.html> but prefixed with Lua object. Ex: `kosmo.db.sqlite3.OPEN_READWRITE + kosmo.db.sqlite3.OPEN_CREATE`
 
- ``Db instance properties`` {#reference_db-instance-properties}
-
+Db instance properties
 * `Db.SQLite3Db` : Lsqlite3 instance
 * `Db.SQLite3Dbfile` = opened database filename with path
 
- ``Db:close()`` {#reference_db-close}
-
+Db:close()
 Database instance handler closer
 
- ``Db:errorMessage() : sqliteCode, text`` {#reference_db-errormessage-sqlitecode-text}
-
+Db:errorMessage() : sqliteCode, text
 * `sqliteCode` : [Sqlite error code](https://www.sqlite.org/rescode.html#primary_result_code_list)
 * `text` : Text information about last error
 
- ``Db:getRows(statementString [, namedValueTable]) : iteratorFn`` {#reference_db-getrows-statementstring-namedvaluetable-iteratorfn}
-
+Db:getRows(statementString [, namedValueTable]) : iteratorFn
 * `statementString` : string with statement as if passed to kosmo.db.Database:prepare(statement)
 * `namedValueTable` : optional, a `{n1=v1, nN=vN}` table with values for the statememt
 * `iteratorFn` : iterator function, as used in `for` loops
@@ -98,22 +82,18 @@ for row in Db:nrows("SELECT * FROM test WHERE id=:id", {id=1}) do
 end
 ```
 
- ``Db:prepare(statementString) : Stmt`` {#reference_db-prepare-statementstring-stmt}
-
+Db:prepare(statementString) : Stmt
 * `statement`: string
 * `Stmt`: returns a statement instance
 
- ``Stmt:run(namedValueTable) : Stmt`` {#reference_stmt-run-namedvaluetable-stmt}
-
+Stmt:run(namedValueTable) : Stmt
 * `namedValueTable` : table dictionary or values for positional "?" in statements
 * `Stmt` : returned table with lsqlite3 kosmo extended methods
 
- ``Stmt:ends() : sqliteCode`` {#reference_stmt-ends-sqlitecode}
-
+Stmt:ends() : sqliteCode
 * `sqliteCode` : [Sqlite error code](https://www.sqlite.org/rescode.html#primary_result_code_list)
 
- ``Stmt:getRows(namedValueTable) : iteratorFn`` {#reference_stmt-getrows-namedvaluetable-iteratorfn}
-
+Stmt:getRows(namedValueTable) : iteratorFn
 * `namedValueTable` : a `{n1=v1, nN=vN}` values to be used with the statement
 * `iteratorFn` : returns a iterator function, as used in `for` loops
 
@@ -127,4 +107,4 @@ end
 ```
 
 ----------
-Last update: 2019-08-11 19:33:37 -0300
+Last update: 2019-08-11 19:45:14 -0300
