@@ -1,9 +1,13 @@
 1. [```Kosmo```](#reference_kosmo)
+
  1. [```Kosmo configuration methods```](#reference_kosmo-configuration-methods)
+
   1. [```kosmo.root() : pathString```](#reference_kosmo-root-pathstring)
   1. [```kosmo.config(name) : confTable```](#reference_kosmo-config-name-conftable)
   1. [```kosmo.run()```](#reference_kosmo-run)
+
 1. [```kosmo.db module```](#reference_kosmo-db-module)
+
   1. [```kosmo.db.open(databaseName, extraConf) : Db```](#reference_kosmo-db-open-databasename-extraconf-db)
   1. [```Db instance properties```](#reference_db-instance-properties)
   1. [```Db:close()```](#reference_db-close)
