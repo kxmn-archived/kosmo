@@ -1,22 +1,18 @@
 1. [```Kosmo```](#reference_kosmo)
-
- 1. [```Kosmo configuration methods```](#reference_kosmo-configuration-methods)
-
-  1. [```kosmo.root() : pathString```](#reference_kosmo-root-pathstring)
-  1. [```kosmo.config(name) : confTable```](#reference_kosmo-config-name-conftable)
-  1. [```kosmo.run()```](#reference_kosmo-run)
-
+    1. [```Kosmo configuration methods```](#reference_kosmo-configuration-methods)
+        1. [```kosmo.root() : pathString```](#reference_kosmo-root-pathstring)
+        1. [```kosmo.config(name) : confTable```](#reference_kosmo-config-name-conftable)
+        1. [```kosmo.run()```](#reference_kosmo-run)
 1. [```kosmo.db module```](#reference_kosmo-db-module)
-
-  1. [```kosmo.db.open(databaseName, extraConf) : Db```](#reference_kosmo-db-open-databasename-extraconf-db)
-  1. [```Db instance properties```](#reference_db-instance-properties)
-  1. [```Db:close()```](#reference_db-close)
-  1. [```Db:errorMessage() : sqliteCode, text```](#reference_db-errormessage-sqlitecode-text)
-  1. [```Db:getRows(statementString [, namedValueTable]) : iteratorFn```](#reference_db-getrows-statementstring-namedvaluetable-iteratorfn)
-  1. [```Db:prepare(statementString) : Stmt```](#reference_db-prepare-statementstring-stmt)
-  1. [```Stmt:run(namedValueTable) : Stmt```](#reference_stmt-run-namedvaluetable-stmt)
-  1. [```Stmt:ends() : sqliteCode```](#reference_stmt-ends-sqlitecode)
-  1. [```Stmt:getRows(namedValueTable) : iteratorFn```](#reference_stmt-getrows-namedvaluetable-iteratorfn)
+        1. [```kosmo.db.open(databaseName, extraConf) : Db```](#reference_kosmo-db-open-databasename-extraconf-db)
+        1. [```Db instance properties```](#reference_db-instance-properties)
+        1. [```Db:close()```](#reference_db-close)
+        1. [```Db:errorMessage() : sqliteCode, text```](#reference_db-errormessage-sqlitecode-text)
+        1. [```Db:getRows(statementString [, namedValueTable]) : iteratorFn```](#reference_db-getrows-statementstring-namedvaluetable-iteratorfn)
+        1. [```Db:prepare(statementString) : Stmt```](#reference_db-prepare-statementstring-stmt)
+        1. [```Stmt:run(namedValueTable) : Stmt```](#reference_stmt-run-namedvaluetable-stmt)
+        1. [```Stmt:ends() : sqliteCode```](#reference_stmt-ends-sqlitecode)
+        1. [```Stmt:getRows(namedValueTable) : iteratorFn```](#reference_stmt-getrows-namedvaluetable-iteratorfn)
 
 
 
@@ -131,4 +127,4 @@ end
 ```
 
 ----------
-Last update: 2019-08-11 18:06:28 -0300
+Last update: 2019-08-11 18:09:35 -0300
