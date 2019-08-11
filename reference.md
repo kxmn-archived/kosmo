@@ -1,8 +1,7 @@
 1. [```Kosmo```](#reference_kosmo)
-		1. [```kosmo.root() : pathString```](#reference_kosmo-root-pathstring)
 		1. [```kosmo.config(name) : confTable```](#reference_kosmo-config-name-conftable)
 		1. [```kosmo.run()```](#reference_kosmo-run)
-	1. [```kosmo.db module```](#reference_kosmo-db-module)
+1. [```kosmo.db module```](#reference_kosmo-db-module)
 		1. [```kosmo.db.open(databaseName, extraConf) : Db```](#reference_kosmo-db-open-databasename-extraconf-db)
 		1. [```Db instance properties```](#reference_db-instance-properties)
 		1. [```Db:close()```](#reference_db-close)
@@ -25,10 +24,6 @@ The main objective is not be exhaustively complete, but provide
 some easy to go patterns to start and handle projects with less
 efforts.
 
-### ``kosmo.root() : pathString`` ### {#reference_kosmo-root-pathstring}
-
-* pathString : root path for the project
-
 ### ``kosmo.config(name) : confTable`` ### {#reference_kosmo-config-name-conftable}
 
 * name : name of config scope, as found in kosmo cfg folder
@@ -44,7 +39,7 @@ as modules, i.e. `./run a.b` will dofile the project `./lib/a/b.lua`.
 This lua file is not a module, so shouldn't return a object (table) or function,
 but autoexecute.
 
-## ``kosmo.db module`` ## {#reference_kosmo-db-module}
+# ``kosmo.db module`` # {#reference_kosmo-db-module}
 
 This module encapsulates lsqlite3 module <http://lua.sqlite.org>.
 The main benefits are:
@@ -121,4 +116,4 @@ end
 ```
 
 ----------
-Last update: 2019-08-11 17:12:39 -0300
+Last update: 2019-08-11 17:58:19 -0300
