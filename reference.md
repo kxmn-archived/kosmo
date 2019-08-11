@@ -5,7 +5,7 @@
 
 
 
-# ``Kosmo`:q` {#reference_kosmo}
+# ``Kosmo`` {#reference_kosmo}
 
 Kosmo is a framework and, as the greek name says, will help you
 to develop in a MVC, minimum organized environment and provide
@@ -15,16 +15,16 @@ The main objective is not be exhaustively complete, but provide
 some easy to go patterns to start and handle projects with less
 efforts.
 
-## ``Kosmo configuration methods`:q` {#reference_kosmo-configuration-methods}
+## ``Kosmo configuration methods`` {#reference_kosmo-configuration-methods}
 
 The following methods are used to configure path settings,
 command line execution control, etc
 
-### ``kosmo.root() : pathString`:q` {#reference_kosmo-root-pathstring}
+### ``kosmo.root() : pathString`` {#reference_kosmo-root-pathstring}
 
 * pathString : root path for the project
 
-### ``kosmo.config(name) : confTable`:q` {#reference_kosmo-config-name-conftable}
+### ``kosmo.config(name) : confTable`` {#reference_kosmo-config-name-conftable}
 
 Get configuration from files stored in kosmo file hierarchy
 : `name` name of config scope, as found in kosmo cfg folder
@@ -107,4 +107,4 @@ end
 ```
 
 ----------
-Last update: 2019-08-11 19:45:14 -0300
+Last update: 2019-08-11 19:47:58 -0300
