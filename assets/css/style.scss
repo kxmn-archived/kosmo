@@ -3,8 +3,8 @@
 
 @import "{{ site.theme }}";
 
-$colorBoldBg: #080808;
-$colorBaseBg: #181818;
+$colorBaseBg: #080808;
+$colorBoldBg: #11202f;
 $colorBase:   #eeeeee;
 $colorBold:   #a5835c;
 $colorAction: #ff8800;
@@ -41,7 +41,15 @@ section #title p {
 	color:$colorAction;
 }
 
-#header {position:absolute}
+#header {
+	position:absolute;
+	background:transparent;
+	border:none;
+	box-shadow:none;
+	right:0;
+	left:auto;
+	width:auto
+}
 :target {text-shadow:0 0 5px $colorAction}
 
 ul,ol,li { list-style-image: none}
@@ -67,11 +75,15 @@ a>code {
 	font-size:inherit;
 }
 
+.wrapper > section {
+	margin-top:0;
+}
+
 h1, h2, h3, h4 {
 	display:inline-block;
 	margin-bottom:0.5em;
 	background:$colorBaseBg;
-	color:$colorAction;
+	color:$colorBold;
 	padding-right:10px;
 }
 
