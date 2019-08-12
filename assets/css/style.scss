@@ -6,7 +6,7 @@
 $colorBoldBg: #080808;
 $colorBaseBg: #181818;
 $colorBase:   #eeeeee;
-$colorBold:   #ffaa88;
+$colorBold:   #a5835c;
 $colorAction: #ff8800;
 
 body {
@@ -71,7 +71,7 @@ h1, h2, h3, h4 {
 	display:inline-block;
 	margin-bottom:0.5em;
 	background:$colorBaseBg;
-	color:$colorBold;
+	color:$colorAction;
 	padding-right:10px;
 }
 
@@ -90,15 +90,15 @@ blockquote {
 	border-left: 3px solid #ff6600;
 }
 
-pre { border:1px dashed #ff6600; }
+pre { border:1px dashed #ff660088; }
 pre, code, kbd {
-	background:#080808;
+	background:#111;
 	box-shadow:none;
 }
 
 code {
-	border:none;padding:1px 2px;
 	color: $colorBold;
+	border:none;padding:1px 2px;
 	font-family: Bitstream Vera Sans Mono, Lucida Console, Terminal, monospace;
 }
 
