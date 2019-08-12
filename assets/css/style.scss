@@ -48,6 +48,7 @@ ul,ol,li { list-style-image: none}
 ol {list-style-type: decimal}
 ol > li > ol {list-style-type:disc}
 li > ul {list-style-type:circle}
+dt {color:inherit;font-family:inherit}
 
 h1 {font-size:2.5em;font-weight:bold;}
 h2 {font-size:1.8em;}
@@ -58,7 +59,6 @@ hr {background:none;border:1px dashed #696969;height:1px}
 	color:inherit;
 	font-family:inherit;
 	font-size:inherit;
-	margin:0;
 	padding:0;
 }
 a>code {
@@ -100,6 +100,7 @@ code {
 	color: $colorBold;
 	border:none;padding:1px 2px;
 	font-family: Bitstream Vera Sans Mono, Lucida Console, Terminal, monospace;
+	margin:0;
 }
 
 #header nav li a {
