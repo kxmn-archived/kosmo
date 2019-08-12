@@ -11,7 +11,7 @@ $colorAction: #ff8800;
 
 body {
 	color: $colorBase;
-	background: $colorBg;
+	background: $colorBaseBg;
 }
 #title:before {
 	display:block;
@@ -91,7 +91,7 @@ blockquote {
 
 pre { border:1px dashed #ff6600; }
 pre, code, kbd {
-	background:#181818;
+	background:#080808;
 	box-shadow:none;
 }
 
