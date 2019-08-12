@@ -15,6 +15,8 @@
         * [```Stmt:run(namedValueTable) : Stmt```](#reference_stmt-run-namedvaluetable-stmt)
         * [```Stmt:ends() : sqliteCode```](#reference_stmt-ends-sqlitecode)
         * [```Stmt:getRows(namedValueTable) : iteratorFn```](#reference_stmt-getrows-namedvaluetable-iteratorfn)
+1. [```First steps:```](#reference_first-steps)
+1. [```Templating```](#reference_templating)
 
 
 
@@ -36,13 +38,13 @@ command line execution control, etc
 ## ``kosmo.root() : pathString`` {#reference_kosmo-root-pathstring}
 
 Get the project pathstring to use building path for other resources
-: `pathString` root path for the project
+* `pathString` root path for the project
 
 ## ``kosmo.config(name) : confTable`` {#reference_kosmo-config-name-conftable}
 
 Get configuration from files stored in kosmo file hierarchy
-: `name` name of config scope, as found in kosmo cfg folder
-: `confTable` table returned with the properties set on file
+* `name` name of config scope, as found in kosmo cfg folder
+* `confTable` table returned with the properties set on file
 
 ## ``kosmo.run()`` {#reference_kosmo-run}
 
@@ -81,8 +83,8 @@ Handles actions in a single data/base
 ### ``Db properties`` {#reference_db-properties}
 
 Properties on table returned by `kosmo.db.open()`
-: `Db.SQLite3Db` Lsqlite3 instance
-: `Db.SQLite3Dbfile` opened database filename with path
+* `Db.SQLite3Db` Lsqlite3 instance
+* `Db.SQLite3Dbfile` opened database filename with path
 
 ### ``Db:close()`` {#reference_db-close}
 
@@ -91,15 +93,15 @@ Database instance handler closer
 ### ``Db:errorMessage() : sqliteCode, text`` {#reference_db-errormessage-sqlitecode-text}
 
 Get last database message and code error.
-: `sqliteCode` [Sqlite error code](https://www.sqlite.org/rescode.html#primary_result_code_list)
-: `text` Text information about last error
+* `sqliteCode` [Sqlite error code](https://www.sqlite.org/rescode.html#primary_result_code_list)
+* `text` Text information about last error
 
 ### ``Db:getRows(statementString [, namedValueTable]) : iteratorFn`` {#reference_db-getrows-statementstring-namedvaluetable-iteratorfn}
 
 Shorthand to get direct data passing statement and variables, returning a iterator for use with loops
-: `statementString` string with statement as if passed to `kosmo.db.Database:prepare(statement)`
-: `namedValueTable` optional, a `{n1=v1, nN=vN}` table with values for the statememt
-: `iteratorFn` iterator function, as used in `for` loops
+* `statementString` string with statement as if passed to `kosmo.db.Database:prepare(statement)`
+* `namedValueTable` optional, a `{n1=v1, nN=vN}` table with values for the statememt
+* `iteratorFn` iterator function, as used in `for` loops
 
 Example:
 ```
@@ -111,8 +113,8 @@ end
 ### ``Db:prepare(statementString) : Stmt`` {#reference_db-prepare-statementstring-stmt}
 
 Prepare statement to receive values before processing
-: `statement` string
-: `Stmt` returns a statement instance
+* `statement` string
+* `Stmt` returns a statement instance
 
 ## ``Stmt Instance`` {#reference_stmt-instance}
 
@@ -122,19 +124,19 @@ Provides methods to run the statement with values and get results
 
 Reset statement, bind named values and executes, checking if result
 is ok. Named values are passed with a dictionary table.
-: `namedValueTable` : dictionary table, where indexes are the variables of statement without the ":" or "$" prefixing it.
-: `Stmt` : Returns the self, so you can call run multiple times with different values.
+* `namedValueTable` : dictionary table, where indexes are the variables of statement without the ":" or "$" prefixing it.
+* `Stmt` : Returns the self, so you can call run multiple times with different values.
 
 ### ``Stmt:ends() : sqliteCode`` {#reference_stmt-ends-sqlitecode}
 
 Ends the execution for the statement. Internal call for sqlite3 `stmt:finalize()`
-: `sqliteCode` [Sqlite error code](https://www.sqlite.org/rescode.html#primary_result_code_list)
+* `sqliteCode` [Sqlite error code](https://www.sqlite.org/rescode.html#primary_result_code_list)
 
 ### ``Stmt:getRows(namedValueTable) : iteratorFn`` {#reference_stmt-getrows-namedvaluetable-iteratorfn}
 
 Run statement with name values returning a iterator for successive calls on results
-: `namedValueTable` values to use with statement ex: `{n1=v1, nN=vN}`
-: `iteratorFn` : returns a iterator function, as used in `for` loops
+* `namedValueTable` values to use with statement ex: `{n1=v1, nN=vN}`
+* `iteratorFn` : returns a iterator function, as used in `for` loops
 
 Example:
 
@@ -146,5 +148,21 @@ for row in Stmt:nrows{id1 = 10, id2 = 20} do
 end
 ```
 
+# ``First steps:`` {#reference_first-steps}
+
+* Download using luarocks or downloading source from GitHub
+* Once download and right placed on your Lua path...
+* Run `./run kosmo.install`
+
+Doing this it will create the project structure and basic file
+configurations. So you can explore configurations and adapt to your needs.
+
+# ``Templating`` {#reference_templating}
+
+Kosmo provides a shorthand to access Aurora templates.
+requiring `kosmo.template` it automatically will create a aurora.template
+instance passing the configuration from your Kosmo configuration folder
+and returns the new instance.
+
 ----------
-Last update: 2019-08-11 22:15:12 -0300
+Last update: 2019-08-11 22:36:30 -0300
