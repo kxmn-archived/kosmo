@@ -12,7 +12,7 @@ $colorAction: #ff8800;
 body,html {
 	color: $colorBase;
 	background: $colorBaseBg;
-	font-family:16px/1.5 "OpenSansRegular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font:16px/1.5 "OpenSansRegular", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 #title:before {
 	display:block;
