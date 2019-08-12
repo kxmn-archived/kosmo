@@ -107,10 +107,6 @@ blockquote {
 }
 
 pre { border:1px dashed $colorBold; }
-pre, code, kbd {
-	background:$colorBoldBg;
-	box-shadow:none;
-}
 
 code {
 	color: $colorBold;
