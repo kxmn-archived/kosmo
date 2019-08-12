@@ -3,11 +3,11 @@
 
 @import "{{ site.theme }}";
 
-$colorBoldBg = #080808
-$colorBaseBg = #181818
-$colorBase = #eee
-$colorBold = 
-$colorAction = #f80
+$colorBoldBg: #080808;
+$colorBaseBg: #181818;
+$colorBase:   #eeeeee;
+$colorBold:   #ffaa88;
+$colorAction: #ff8800;
 
 body {
 	color: $colorBase;
@@ -44,12 +44,28 @@ section #title p {
 #header {position:absolute}
 :target {text-shadow:0 0 5px $colorAction}
 
+ul,ol,li { list-style-image: none}
+ol {list-style-type: decimal}
+ol > li > ol {list-style-type:disc}
+li > ul {list-style-type:circle}
+
 h1 {font-size:2.5em;font-weight:bold;}
 h2 {font-size:1.8em;}
 h3 {font-size:1.5em; color:#fa8;}
 hr {background:none;border:1px dashed #696969;height:1px}
-[id]>code {background:inherit, color:inherit; font-family:inherit}
-a>code {color:inherit;background:inherit}
+[id]>code {
+	background:inherit;
+	color:inherit;
+	font-family:inherit;
+	font-size:inherit;
+	margin:0;
+	padding:0;
+}
+a>code {
+	color:inherit;
+	background:inherit;
+	font-size:inherit;
+}
 
 h1, h2, h3, h4 {
 	display:inline-block;
