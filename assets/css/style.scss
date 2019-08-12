@@ -2,8 +2,17 @@
 ---
 
 @import "{{ site.theme }}";
-body {color:#eee}
 
+$colorBoldBg = #080808
+$colorBaseBg = #181818
+$colorBase = #eee
+$colorBold = 
+$colorAction = #f80
+
+body {
+	color: $colorBase;
+	background: $colorBg;
+}
 #title:before {
 	display:block;
 	width:100px;
@@ -29,22 +38,23 @@ section #title p {
 	display:none;
 }
 #title h1, a:link, a:visited, a:hover {
-	color:#f60;
+	color:$colorAction;
 }
 
 #header {position:absolute}
-:target {color:#f80}
-:target:before {border-color:#f80}
+:target {text-shadow:0 0 5px $colorAction}
 
-h1 {font-size:3em;font-weight:bold;}
-h2 {font-size:2.5em;}
+h1 {font-size:2.5em;font-weight:bold;}
+h2 {font-size:1.8em;}
 h3 {font-size:1.5em; color:#fa8;}
 hr {background:none;border:1px dashed #696969;height:1px}
+[id]>code {background:inherit, color:inherit; font-family:inherit}
+a>code {color:inherit;background:inherit}
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
 	display:inline-block;
 	margin-bottom:0.5em;
-	background:#252525;
+	background:$colorBold;
 	padding-right:10px;
 }
 
