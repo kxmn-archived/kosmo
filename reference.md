@@ -5,7 +5,8 @@
     1. [```kosmo.run()```](#reference_kosmo-run)
 1. [```Database: kosmo.db```](#reference_database-kosmo-db)
     1. [```kosmo.db.open(databaseName, extraConf) : Db```](#reference_kosmo-db-open-databasename-extraconf-db)
-    1. [```Db instance properties```](#reference_db-instance-properties)
+    1. [```Db instance```](#reference_db-instance)
+        * [```Db properties```](#reference_db-properties)
         * [```Db:close()```](#reference_db-close)
         * [```Db:errorMessage() : sqliteCode, text```](#reference_db-errormessage-sqlitecode-text)
         * [```Db:getRows(statementString [, namedValueTable]) : iteratorFn```](#reference_db-getrows-statementstring-namedvaluetable-iteratorfn)
@@ -73,7 +74,11 @@ The `extraConf` table can have these optional keys:
 * `errorfn` : function to handle errors. Default is the global assert.
 * `flags` : as defined in <http://www.sqlite.org/c3ref/open.html> but prefixed with Lua object. Ex: `kosmo.db.sqlite3.OPEN_READWRITE + kosmo.db.sqlite3.OPEN_CREATE`
 
-## ``Db instance properties`` {#reference_db-instance-properties}
+## ``Db instance`` {#reference_db-instance}
+
+Handles actions in a single data/base
+
+### ``Db properties`` {#reference_db-properties}
 
 Properties on table returned by `kosmo.db.open()`
 : `Db.SQLite3Db` Lsqlite3 instance
@@ -91,13 +96,14 @@ Get last database message and code error.
 
 ### ``Db:getRows(statementString [, namedValueTable]) : iteratorFn`` {#reference_db-getrows-statementstring-namedvaluetable-iteratorfn}
 
-: `statementString` string with statement as if passed to kosmo.db.Database:prepare(statement)
+Shorthand to get direct data passing statement and variables, returning a iterator for use with loops
+: `statementString` string with statement as if passed to `kosmo.db.Database:prepare(statement)`
 : `namedValueTable` optional, a `{n1=v1, nN=vN}` table with values for the statememt
 : `iteratorFn` iterator function, as used in `for` loops
 
 Example:
 ```
-for row in Db:nrows("SELECT * FROM test WHERE id=:id", {id=1}) do
+for row in Db:getRows("SELECT * FROM test WHERE id=:id", {id=1}) do
     print(row.fieldName)
 end
 ```
@@ -141,4 +147,4 @@ end
 ```
 
 ----------
-Last update: 2019-08-11 20:41:50 -0300
+Last update: 2019-08-11 22:15:12 -0300
