@@ -70,7 +70,8 @@ a>code {
 h1, h2, h3, h4 {
 	display:inline-block;
 	margin-bottom:0.5em;
-	background:$colorBold;
+	background:$colorBaseBg;
+	color:$colorBold;
 	padding-right:10px;
 }
 
@@ -95,7 +96,11 @@ pre, code, kbd {
 	box-shadow:none;
 }
 
-code {border:none;padding:1px 2px}
+code {
+	border:none;padding:1px 2px;
+	color: $colorBold;
+	font-family: Bitstream Vera Sans Mono, Lucida Console, Terminal, monospace;
+}
 
 #header nav li a {
 	border:1px solid #742;
