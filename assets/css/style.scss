@@ -5,7 +5,7 @@
 
 $colorBaseBg: #080808;
 $colorBoldBg: #11202f;
-$colorBase:   #eeeeee;
+$colorBase:   #aaafb4;
 $colorBold:   #a5835c;
 $colorAction: #ff8800;
 
@@ -75,6 +75,10 @@ a>code {
 	font-size:inherit;
 }
 
+pre code {
+	color:$colorBase;
+}
+
 .wrapper > section {
 	margin-top:0;
 }
@@ -102,9 +106,9 @@ blockquote {
 	border-left: 3px solid #ff6600;
 }
 
-pre { border:1px dashed #ff660088; }
+pre { border:1px dashed $colorBold; }
 pre, code, kbd {
-	background:#111;
+	background:$colorBoldBg;
 	box-shadow:none;
 }
 
