@@ -20,7 +20,8 @@ require 'aurora'
 kosmo = ondemand('kosmo')
 
 local kosmoConfig = {}
-local root = arg[0]:match"^(.+)/.+$"
+local root = arg[0]:match"^(.+)/.+$" or "./"
+
 if not root:sub(1):match"[%./]" then root = './'..root end
 package.path = root..'/lib/?.lua;'..root..'/lib/?/init.lua;'..package.path
 

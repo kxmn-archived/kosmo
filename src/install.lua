@@ -1,8 +1,11 @@
 --[[md
 	# First steps:
-	* Download using luarocks or downloading source from GitHub
-	* Once download and right placed on your Lua path...
-	* Run `./run kosmo.install`
+	* Install preferably from Lua Rocks and run kosmo.install:
+	```
+		luarocks install kosmo
+		cd your-project-dir
+		lua -f kosmo.install
+	```
 
 	Doing this it will create the project structure and basic file
 	configurations. So you can explore configurations and adapt to your needs.
@@ -49,7 +52,7 @@ local files = {
 	["cfg/db.lua"] =
 	[[return {
 			path    = kosmo.root()..'/dat',
-			fileext = 'sl3'
+			fileext = 'sqlitel3'
 	}]],
 
 	["cfg/ws.lua"] =
@@ -65,7 +68,8 @@ local files = {
 	}]],
 
 	["run"] =
-	[[require 'kosmo'; kosmo.config(); kosmo.run()]],
+	[[#!/usr/bin/env lua5.3
+	require 'kosmo'; kosmo.config(); kosmo.run()]],
 
 	["web/index.html"] =
 	[[<!DOCTYPE html><html><head><title>Kosmo</title><body><h1>Hello Kosmos</h1></body></html>]]
