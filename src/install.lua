@@ -1,3 +1,16 @@
+--[[md
+	# First steps:
+	* Download using luarocks or downloading source from GitHub
+	* Once download and right placed on your Lua path...
+	* Run `./run kosmo.install`
+
+	Doing this it will create the project structure and basic file
+	configurations. So you can explore configurations and adapt to your needs.
+
+]]
+
+
+
 require 'aurora'
 local lfs = require 'lfs'
 local fs = aurora.fs
@@ -12,13 +25,14 @@ local subdir = {
 		"var/web-cache",
 	"cfg", -- configurations for templates, server, etc
 	"lib", -- your lua code
+		"lib/run", -- place for lua backends
 	"log", -- where the program writes some useful info
 	"tpl", -- templates not compiled
 	"web", -- webserver statically served
-		"web/assets/css", 
-		"web/assets/fonts", 
-		"web/assets/img", 
-		"web/assets/js",  
+		"web/assets/css",
+		"web/assets/fonts",
+		"web/assets/img",
+		"web/assets/js",
 	"dat", -- place for models
 }
 
@@ -32,9 +46,10 @@ local files = {
 		}
 	]],
 
-	["cfg/database.lua"] =
+	["cfg/db.lua"] =
 	[[return {
-			path				= kosmo.root()..'/dat/'
+			path    = kosmo.root()..'/dat',
+			fileext = 'sl3'
 	}]],
 
 	["cfg/ws.lua"] =
@@ -50,11 +65,7 @@ local files = {
 	}]],
 
 	["run"] =
-	[[
-		require 'kosmo'
-		kosmo.config() -- set paths
-		kosmo.run() -- run command
-	]],
+	[[require 'kosmo'; kosmo.config(); kosmo.run()]],
 
 	["web/index.html"] =
 	[[<!DOCTYPE html><html><head><title>Kosmo</title><body><h1>Hello Kosmos</h1></body></html>]]
