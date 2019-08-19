@@ -71,11 +71,11 @@ end
 function kosmo.run()
 	local run = require('run.'..arg[1])
 	if arg[2] then
-		if type (arg[2]) == 'function' then
+		if type (run[arg[2]]) == 'function' then
 			run[arg[2]]()
 		else
+			print('Possible commands to '..arg[1]..':')
 			for i,v in pairs(run) do
-				print('Possible commands to '..arg[1]..':')
 				if type(run[i]) == 'function' then
 					print(i)
 				end
@@ -87,3 +87,4 @@ function kosmo.run()
 		end
 	end
 end
+return kosmo

@@ -10,14 +10,14 @@
 
 local sqlite = require 'lsqlite3' -- lsqlite3 module
 
-local M, Db, Stmt = {}, {}, {}
-local cfg = kosmo.config('db')
+local M, Db, Stmt, _ = {}, {}, {}, {}
+local syscfg = kosmo.config('db')
 
 ---- DB OPENER / CONSTRUCTOR ------------------------------
 
 --[[md
 	## kosmo.db.open(databaseName, extraConf) : Db
-	
+
 	* `databaseName` : database name, to be found in database path config
 	* `extraConf` : a table with extra paramenters to affect use of database
 	* `Db` : instance of kosmo.db encapsulating Lsqlite3
@@ -28,12 +28,13 @@ local cfg = kosmo.config('db')
 	* `flags` : as defined in <http://www.sqlite.org/c3ref/open.html> but prefixed with Lua object. Ex: `kosmo.db.sqlite3.OPEN_READWRITE + kosmo.db.sqlite3.OPEN_CREATE`
 
 ]]
-function M.open(n, c)
-	local n = table.concat({cfg.path,'/',n,'.',cfg.fileext})
-	c = c or {}
+function M.open(name, cfg)
+	local name = table.concat({syscfg.path,'/',name,'.',syscfg.fileext})
+	cfg = cfg or {}
 	return setmetatable({
-		SQLite3Db = assert(sqlite.open(n, c.flags or nil)),
-		SQLite3Dbfile = n, _error = c.errorfn or assert
+		SQLite3Db = assert(sqlite.open(name, cfg.flags or nil)),
+		SQLite3Dbfile = name,
+		_error = cfg.errorfn or assert
 	},{
 		__index = function(t,k)
 			return Db[k] or function(self,...)
@@ -60,7 +61,11 @@ end
 	### Db:close()
 	Database instance handler closer
 ]]
-function Db:close()   return _error(self.SQLite3Db:close()) end
+function Db:close() return self._error(self.SQLite3Db:close()) end
+
+--[[md
+	### Db:execute(query)
+]]
 
 --[[md
 	### Db:errorMessage() : sqliteCode, text
@@ -149,7 +154,7 @@ function Stmt:ends()
 	return self.SQLite3Stmt:finalize()
 end
 
---[=[md
+--[[md
 	### Stmt:getRows(namedValueTable) : iteratorFn
 	Run statement with name values returning a iterator for successive calls on results
 	* `namedValueTable` values to use with statement ex: `{n1=v1, nN=vN}`
@@ -159,12 +164,12 @@ end
 
 	```
 	local Stmt = kosmo.db.open('somedb')
-	Stmt:prepare[[SELECT * FROM test WHERE id > :id1 AND id < :id2']]
+	Stmt:prepare"SELECT * FROM test WHERE id > :id1 AND id < :id2'"
 	for row in Stmt:nrows{id1 = 10, id2 = 20} do
 		print(row.fieldName)
 	end
 	```
-]=]
+]]
 function Stmt:getRows(v)
 	self.SQLite3Stmt:reset();
 	self.SQLite3Stmt:bind_names(v)
