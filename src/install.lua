@@ -57,9 +57,11 @@ local files = {
 
 	["cfg/ws.lua"] =
 	[[return {
-		compress = true,
-		port = 8080,
-		location = kosmo.root().."/web/",
+		server = {
+			compress = true,
+			port = 8080,
+			location = kosmo.root().."/web/",
+		},
 		rules = {
 			{ '/api/', 'kosmo.web.api', ''  },
 			{ '/test',             302, '/' }
